@@ -5,14 +5,18 @@ import loveIsWarLogoMark from "@/assets/love-is-war.png";
 import { gsap } from "gsap";
 import TextPlugin from "gsap/TextPlugin";
 import { useEffect } from "react";
+import { MailingListForm } from "@/components/mailing-list-form";
+
+const writeUp =
+  "Starsamm is war—grit forged through strife, a superhuman light born from brokenness. His path began in the quiet chaos of separation, music pulsing in his soul as life pushed him to the edge. Lagos to Osun and back, writing lyrics in forbidden moments to planning for a dream bigger than himself, every struggle became a step forward. A transient being, his essence transcends time, like starlight, burning bright and reaching us eons later. His music isn’t made; it unfolds, guided by experience and spirituality beyond bounds. Love is war, and Starsamm is the light in the fight.";
 
 export default function Home() {
   gsap.registerPlugin(TextPlugin);
 
   useEffect(() => {
     gsap.to(".desc", {
-      duration: 20,
-      text: "a battlefield where hearts clash, not to conquer, but to surrender to the beauty of connection. Ready to join the fight for love? Share your name and email, and let’s embark on this journey together!",
+      duration: 40,
+      text: writeUp,
     });
   }, []);
   return (
@@ -29,11 +33,16 @@ export default function Home() {
             src={loveIsWarLogoMark}
             alt="love is war logo"
             className="md:max-w-[50%]"
+            placeholder="blur"
           />
         </div>
       </div>
       <div className="p-4 md:p-20 w-full">
-        <p className="text-2xl desc min-h-[400px]"></p>
+        <div className="h-[600px] md:min-h-[40px] md:w-3/5 mx-auto">
+          <p className="text-2xl desc"></p>
+        </div>
+
+        <MailingListForm />
       </div>
     </div>
   );
