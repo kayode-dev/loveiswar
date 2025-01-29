@@ -29,7 +29,7 @@ export default function Home() {
           className="object-cover h-full"
           placeholder="blur"
         />
-        <div className="absolute bottom-0 left-0 h-full w-full bg-black/50 z-10 flex items-center justify-center">
+        <div className="absolute bottom-0 left-0 h-full w-full bg-black/70 z-10 flex items-center justify-center">
           <Image
             src={loveIsWarLogoMark}
             alt="love is war logo"
