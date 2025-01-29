@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, UnifrakturMaguntia } from "next/font/google";
+import { Inter, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/footer";
 
-const unifrakturMaguntia = UnifrakturMaguntia({
+const bebasNeue = Bebas_Neue({
   weight: ["400"],
   subsets: ["latin"],
-  variable: "--font-unifraktur-maguntia",
+  variable: "--font-bebas-neue",
 });
 const inter = Inter({
   weight: ["400"],
@@ -26,9 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${unifrakturMaguntia.variable} ${inter.variable} antialiased`}
-      >
+      <body className={`${bebasNeue.variable} ${inter.variable} antialiased`}>
         {children}
         <Footer />
       </body>

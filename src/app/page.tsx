@@ -15,13 +15,22 @@ export default function Home() {
   gsap.registerPlugin(TextPlugin);
 
   useEffect(() => {
-    gsap.to(".desc", {
-      duration: 40,
-      text: writeUp,
-    });
+    gsap
+      .to(".desc", {
+        duration: 50,
+        text: writeUp,
+      })
+      .then(() => {
+        gsap.from(".ytVideos", {
+          x: 100,
+          opacity: 1,
+          duration: 2,
+          display: "none",
+        });
+      });
   }, []);
   return (
-    <div className="text-red-700 items-center justify-items-center min-h-screen gap-16 font-[family-name:var(--font-unifraktur-maguntia)]">
+    <div className="text-red-700 items-center justify-items-center min-h-screen gap-16 font-[family-name:var(--font-bebas-neue)]">
       <div className="relative h-screen overflow-hidden">
         <Image
           src={starsamm}
@@ -38,16 +47,17 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="p-4 md:p-20 w-full">
-        <div className="h-[600px] md:h-[250px] md:w-3/5 mx-auto">
-          <p className="text-2xl desc"></p>
-        </div>
+      <div className="p-4 md:p-20 flex flex-col md:flex-row gap-10 w-full md:h-screen">
+        <div className="flex flex-col items-center justify-center md:w-3/4">
+          <div className="h-[600px] md:h-[250px]  mx-auto">
+            <p className="text-2xl desc"></p>
+          </div>
 
-        <MailingListForm />
-        <p className="text-2xl text-center mb-8">and while we wait...</p>
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+          <MailingListForm />
+        </div>
+        <div className="ytVideos flex flex-col items-center overflow-y-auto md:w-1/4 justify-center gap-4">
           <iframe
-            width="100%"
+            className="w-full"
             height="315"
             src="https://www.youtube.com/embed/7GtNl7jBGAU?si=YZhWMmU6wgGI_5Ua"
             title="YouTube video player"

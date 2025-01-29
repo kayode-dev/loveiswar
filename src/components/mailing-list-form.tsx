@@ -6,14 +6,13 @@ import { Input } from "./ui/input";
 import { cn } from "@/lib/utils";
 
 const addToMailingListSchema = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
+  name: z.string(),
   email: z.string().email(),
 });
 export const MailingListForm = () => {
   const form = useForm<z.infer<typeof addToMailingListSchema>>({
     resolver: zodResolver(addToMailingListSchema),
-    defaultValues: { firstName: "", lastName: "", email: "" },
+    defaultValues: { name: "", email: "" },
   });
 
   return (
@@ -24,24 +23,12 @@ export const MailingListForm = () => {
         )}
       >
         <FormField
-          name="firstName"
+          name="name"
           control={form.control}
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input {...field} placeholder="First Name" />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          name="lastName"
-          control={form.control}
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input {...field} placeholder="Last Name" />
+                <Input {...field} placeholder="Name" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -64,8 +51,8 @@ export const MailingListForm = () => {
               </FormItem>
             )}
           />
-          <button className="bg-white text-black h-9 flex items-center justify-center text-sm py-2 px-4">
-            Join
+          <button className="bg-white text-black h-10 flex items-center justify-center text-sm py-2 px-4">
+            Join The Family
           </button>
         </div>
       </form>
