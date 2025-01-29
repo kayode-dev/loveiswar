@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
-import { UnifrakturMaguntia } from "next/font/google";
+import { Inter, UnifrakturMaguntia } from "next/font/google";
 import "./globals.css";
+import { Footer } from "@/components/footer";
 
 const unifrakturMaguntia = UnifrakturMaguntia({
   weight: ["400"],
   subsets: ["latin"],
+  variable: "--font-unifraktur-maguntia",
+});
+const inter = Inter({
+  weight: ["400"],
+  subsets: ["greek-ext"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -19,8 +26,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${unifrakturMaguntia.className} antialiased bg-black`}>
+      <body
+        className={`${unifrakturMaguntia.variable} ${inter.variable} antialiased`}
+      >
         {children}
+        <Footer />
       </body>
     </html>
   );

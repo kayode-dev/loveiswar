@@ -3,10 +3,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
 import { Input } from "./ui/input";
-import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
-
-const inter = Inter({ weight: ["400"], subsets: ["greek-ext"] });
 
 const addToMailingListSchema = z.object({
   firstName: z.string(),
@@ -22,7 +19,9 @@ export const MailingListForm = () => {
   return (
     <Form {...form}>
       <form
-        className={cn("md:w-1/2 mx-auto p-4 space-y-4 mt-10", inter.className)}
+        className={cn(
+          "md:w-1/2 mx-auto p-4 space-y-4 mt-10 font-[family-name:var(--font-inter)]"
+        )}
       >
         <FormField
           name="firstName"
