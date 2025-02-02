@@ -15,8 +15,33 @@
 }
 
 body {
+  interpolate-size: allow-keywords;
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   cursor: url(../assets/cursor.png), auto;
+}
+
+.writeup-container {
+  width: 100%;
+  transition: width 2s ease-in;
+}
+.write-up-container-after {
+  width: 70%;
+}
+
+.youtube-container {
+  width: 0;
+  transition: width 2s ease-in-out;
+}
+
+.youtube-container-after {
+  width: 30%;
+}
+.mailing-list-container {
+  width: 0;
+  transition: width 2s ease-in-out;
+}
+.mailing-list-container-after {
+  width: 100%;
 }

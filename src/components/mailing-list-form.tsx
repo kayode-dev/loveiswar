@@ -3,24 +3,40 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
 import { Input } from "./ui/input";
-import { cn } from "@/lib/utils";
+import { useMutation } from "@tanstack/react-query";
+import { addToMailingList } from "@/lib/actions";
+import { toast } from "./ui/toast";
 
-const addToMailingListSchema = z.object({
+export const addToMailingListSchema = z.object({
   name: z.string(),
   email: z.string().email(),
 });
+
 export const MailingListForm = () => {
   const form = useForm<z.infer<typeof addToMailingListSchema>>({
     resolver: zodResolver(addToMailingListSchema),
     defaultValues: { name: "", email: "" },
   });
-
+  const addToList = useMutation({
+    mutationFn: addToMailingList,
+    onSuccess: () => {
+      toast("Succesfully added to list");
+    },
+    onError: (err) => {
+      toast(err.message);
+    },
+  });
+  const handleSubmit = async ({
+    name,
+    email,
+  }: z.infer<typeof addToMailingListSchema>) => {
+    addToList.mutateAsync({ name, email });
+  };
   return (
     <Form {...form}>
       <form
-        className={cn(
-          "md:w-1/2 mx-auto p-4 space-y-4 mt-10 font-[family-name:var(--font-inter)]"
-        )}
+        className="md:w-3/4 space-y-4 mt-5 font-[family-name:var(--font-inter)]"
+        onSubmit={form.handleSubmit(handleSubmit)}
       >
         <FormField
           name="name"

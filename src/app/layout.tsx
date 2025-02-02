@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Bebas_Neue } from "next/font/google";
 import "./globals.css";
-import { Footer } from "@/components/footer";
+import { Toaster } from "@/components/ui/toast";
+import { QueryProvider } from "@/components/query-client-provider";
+//import { Footer } from "@/components/footer";
 
 const bebasNeue = Bebas_Neue({
   weight: ["400"],
@@ -25,10 +27,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${bebasNeue.variable} ${inter.variable} antialiased`}>
-        {children}
-        <Footer />
+        <QueryProvider>
+          {children}
+          <Toaster />
+        </QueryProvider>
       </body>
     </html>
   );
