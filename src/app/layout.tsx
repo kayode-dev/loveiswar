@@ -9,7 +9,7 @@ const unifrakturMaguntia = UnifrakturMaguntia({
 
 export const metadata: Metadata = {
   title: "Love is War",
-  description: "love and turmoil, either or",
+  description: "love, turmoil and everything in between",
 };
 
 export default function RootLayout({
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${unifrakturMaguntia.className} antialiased`}>
+      <body className={`${unifrakturMaguntia.className} antialiased bg-black`}>
         {children}
       </body>
     </html>
