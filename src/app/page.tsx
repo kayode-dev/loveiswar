@@ -17,7 +17,9 @@ export default function Home() {
   const [animationDone, setAnimationDone] = useState(false);
   const [pageLoaded, setPageLoaded] = useState(false);
   useEffect(() => {
-    setPageLoaded(true);
+    setTimeout(() => {
+      setPageLoaded(true);
+    }, 3000);
   }, []);
   useEffect(() => {
     gsap
@@ -33,16 +35,13 @@ export default function Home() {
   return (
     <div className="relative text-red-700 items-center justify-items-center min-h-screen gap-16 font-[family-name:var(--font-bebas-neue)]">
       <div
-        className={cn(
-          "fixed w-full h-dvh duration-[1.5s] block transition-[display]",
-          {
-            "-z-10": pageLoaded,
-          }
-        )}
+        className={cn("fixed w-full h-dvh duration-1000 transition-[z-index]", {
+          "-z-10": pageLoaded,
+        })}
       >
         <div
           className={cn(
-            "absolute top-0 left-0 w-full h-1/2 bg-white duration-1000 transition-[top] ease-in",
+            "absolute top-0 left-0 w-full h-1/2 bg-neutral-900 duration-1000 transition-[top] ease-in",
             {
               "-top-full": pageLoaded,
             }
@@ -50,7 +49,7 @@ export default function Home() {
         />
         <div
           className={cn(
-            "absolute bottom-0 left-0 w-full h-1/2 bg-white duration-1000 transition-[bottom] ease-in",
+            "absolute bottom-0 left-0 w-full h-1/2 bg-neutral-900 duration-1000 transition-[bottom] ease-in",
             {
               "-bottom-full": pageLoaded,
             }
@@ -59,9 +58,12 @@ export default function Home() {
         <Image
           src={LOveIsWarGrunge}
           alt="Starsamm Love is War"
-          className={cn("absolute top-1/4 -left-2 z-20", {
-            hidden: pageLoaded,
-          })}
+          className={cn(
+            "absolute top-1/4 md:top-0 md:left-[20%] -left-2 z-20",
+            {
+              hidden: pageLoaded,
+            }
+          )}
         />
       </div>
       <div className="p-4 md:p-20 flex flex-col min-h-dvh md:h-screen md:flex-row gap-10 w-full ease-out duration-500">
@@ -96,7 +98,7 @@ export default function Home() {
           <iframe
             className="w-full"
             height="315"
-            src="https://www.youtube.com/embed/7GtNl7jBGAU?si=YZhWMmU6wgGI_5Ua"
+            src="https://www.youtube-nocookie.com/embed/7GtNl7jBGAU?si=YZhWMmU6wgGI_5Ua"
             title="Starsamm - Waiting For, Give me love & Need you (Cover) | Live Performance"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
@@ -105,7 +107,7 @@ export default function Home() {
           <iframe
             className="w-full"
             height="315"
-            src="https://www.youtube.com/embed/JPcO_jXj3vY?si=cEMLumgXUJq9uRJ8"
+            src="https://www.youtube-nocookie.com/embed/JPcO_jXj3vY?si=cEMLumgXUJq9uRJ8"
             title="Starsamm - On Me, Ocean Eyes & Infinity (Cover) | Live Performance"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
