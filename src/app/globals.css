@@ -45,3 +45,12 @@ body {
 .mailing-list-container-after {
   width: 100%;
 }
+
+@media only screen and (max-width: 600px) {
+  .youtube-container-after {
+    width: 100%;
+  }
+  .write-up-container-after {
+    width: 100%;
+  }
+}
