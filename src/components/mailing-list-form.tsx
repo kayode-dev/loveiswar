@@ -20,7 +20,8 @@ export const MailingListForm = () => {
   const addToList = useMutation({
     mutationFn: addToMailingList,
     onSuccess: () => {
-      toast("Succesfully added to list");
+      toast("Thank you for joining!, stay tuned🫶🏾");
+      form.reset();
     },
     onError: (err) => {
       toast(err.message);
@@ -61,6 +62,7 @@ export const MailingListForm = () => {
                     {...field}
                     className="flex-1 w-full"
                     placeholder="Email address"
+                    type="email"
                   />
                 </FormControl>
                 <FormMessage />
