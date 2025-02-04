@@ -62,7 +62,7 @@ export default function Home() {
           src={LOveIsWarGrunge}
           alt="Starsamm Love is War"
           className={cn(
-            "relative duration-1000 ease-in transition-[opacity] z-20",
+            "relative duration-200 ease-in transition-[opacity] z-20",
             {
               "opacity-0": pageLoaded,
             }
