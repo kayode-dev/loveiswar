@@ -19,7 +19,7 @@ export default function Home() {
   useEffect(() => {
     setTimeout(() => {
       setPageLoaded(true);
-    }, 2900);
+    }, 2600);
   }, []);
   useEffect(() => {
     gsap
@@ -64,7 +64,7 @@ export default function Home() {
           className={cn(
             "relative duration-1000 ease-in transition-[opacity] z-20",
             {
-              "opacity-0 hidden": pageLoaded,
+              "opacity-0": pageLoaded,
             }
           )}
         />
