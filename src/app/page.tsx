@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 import LOveIsWarGrunge from "@/assets/LoveiswarGrunge_2.gif";
 
 const writeUp =
-  "Starsamm is war—grit forged through strife, a superhuman light born from brokenness. His path began in the quiet chaos of separation, music pulsing in his soul as life pushed him to the edge. Lagos to Osun and back, writing lyrics in forbidden moments to planning for a dream bigger than himself, every struggle became a step forward. A transient being, his essence transcends time, like starlight, burning bright and reaching us eons later. His music isn’t made; it unfolds, guided by experience and spirituality beyond bounds. Love is war, and Starsamm is the light in the fight.";
+  "Starsamm is battle-born—light shaped by struggle, a soul that refused to break. His journey began in the quiet ache of separation, melodies pressing against his ribs, waiting to escape. From Lagos to Osun and back, he scribbled lyrics in stolen moments, chasing a dream that always felt just out of reach. But stars don’t chase, they burn, and in time, their glow finds you. His music is raw and unbound, pulled from the depths of experience and something greater than himself. Love is war, and every note is a fight worth winning. If you feel it, if you’ve ever walked that line between light and dark, you’re already part of the story. Some things aren’t meant to be followed, just found. Stay close.";
 
 export default function Home() {
   gsap.registerPlugin(TextPlugin);
@@ -83,7 +83,7 @@ export default function Home() {
           </div>
           <div
             className={cn(
-              "mailing-list-container hidden transition-[width] delay-500",
+              "mailing-list-container hidden transition-[width] delay-500 mt-6",
               {
                 "mailing-list-container-after block": animationDone,
               }
