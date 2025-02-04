@@ -6,7 +6,7 @@ import TextPlugin from "gsap/TextPlugin";
 import { useEffect, useState } from "react";
 import { MailingListForm } from "@/components/mailing-list-form";
 import { cn } from "@/lib/utils";
-import LOveIsWarGrunge from "@/assets/Love is war Grunge_2.gif";
+import LOveIsWarGrunge from "@/assets/LoveiswarGrunge_2.gif";
 
 const writeUp =
   "Starsamm is war—grit forged through strife, a superhuman light born from brokenness. His path began in the quiet chaos of separation, music pulsing in his soul as life pushed him to the edge. Lagos to Osun and back, writing lyrics in forbidden moments to planning for a dream bigger than himself, every struggle became a step forward. A transient being, his essence transcends time, like starlight, burning bright and reaching us eons later. His music isn’t made; it unfolds, guided by experience and spirituality beyond bounds. Love is war, and Starsamm is the light in the fight.";
@@ -19,12 +19,12 @@ export default function Home() {
   useEffect(() => {
     setTimeout(() => {
       setPageLoaded(true);
-    }, 3000);
+    }, 2900);
   }, []);
   useEffect(() => {
     gsap
       .to(".desc", {
-        delay: 2,
+        delay: 3.5,
         duration: 20,
         text: writeUp,
       })
@@ -33,11 +33,14 @@ export default function Home() {
       });
   }, []);
   return (
-    <div className="relative text-red-700 items-center justify-items-center min-h-screen gap-16 font-[family-name:var(--font-bebas-neue)]">
+    <div className="relative text-red-700 items-center justify-center min-h-screen gap-16 font-[family-name:var(--font-bebas-neue)]">
       <div
-        className={cn("fixed w-full h-dvh duration-1000 transition-[z-index]", {
-          "-z-10": pageLoaded,
-        })}
+        className={cn(
+          "fixed w-full h-dvh flex items-center justify-center duration-1000 transition-[z-index]",
+          {
+            "-z-10": pageLoaded,
+          }
+        )}
       >
         <div
           className={cn(
@@ -59,9 +62,9 @@ export default function Home() {
           src={LOveIsWarGrunge}
           alt="Starsamm Love is War"
           className={cn(
-            "absolute top-1/4 md:top-0 md:left-[20%] -left-2 z-20",
+            "relative duration-1000 ease-in transition-[opacity] z-20",
             {
-              hidden: pageLoaded,
+              "opacity-0 hidden": pageLoaded,
             }
           )}
         />
@@ -95,26 +98,26 @@ export default function Home() {
             { "youtube-container-after": animationDone }
           )}
         >
-          <iframe
-            className="w-full"
-            height="315"
-            src="https://www.youtube-nocookie.com/embed/7GtNl7jBGAU?si=YZhWMmU6wgGI_5Ua"
-            title="Starsamm - Waiting For, Give me love & Need you (Cover) | Live Performance"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
-          <iframe
-            className="w-full"
-            height="315"
-            src="https://www.youtube-nocookie.com/embed/JPcO_jXj3vY?si=cEMLumgXUJq9uRJ8"
-            title="Starsamm - On Me, Ocean Eyes & Infinity (Cover) | Live Performance"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
+          <YoutubeIFrame videoSrc="https://www.youtube-nocookie.com/embed/JPcO_jXj3vY?si=cEMLumgXUJq9uRJ8" />
+          <YoutubeIFrame videoSrc="https://www.youtube-nocookie.com/embed/7GtNl7jBGAU?si=YZhWMmU6wgGI_5Ua" />
         </div>
       </div>
     </div>
   );
 }
+interface YoutubeIFrameProps {
+  videoSrc: string;
+}
+const YoutubeIFrame = ({ videoSrc }: YoutubeIFrameProps) => {
+  return (
+    <iframe
+      className="w-full border-2 rounded-lg border-red-700/30"
+      height="315"
+      src={videoSrc}
+      title="Starsamm - Waiting For, Give me love & Need you (Cover) | Live Performance"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerPolicy="strict-origin-when-cross-origin"
+      allowFullScreen
+    ></iframe>
+  );
+};

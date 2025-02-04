@@ -5,7 +5,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
 import { Input } from "./ui/input";
 import { useMutation } from "@tanstack/react-query";
 import { addToMailingList } from "@/lib/actions";
-import { toast } from "./ui/toast";
+import { toast } from "@/components/ui/toast";
 
 export const addToMailingListSchema = z.object({
   name: z.string(),
@@ -68,7 +68,7 @@ export const MailingListForm = () => {
             )}
           />
           <button className="bg-white text-black h-10 flex items-center justify-center text-sm py-2 px-4">
-            Join The Family
+            Join
           </button>
         </div>
       </form>

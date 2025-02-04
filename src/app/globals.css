@@ -27,7 +27,7 @@ body {
   transition: width 2s ease-in;
 }
 .write-up-container-after {
-  width: 70%;
+  width: 65%;
 }
 
 .youtube-container {
@@ -36,7 +36,7 @@ body {
 }
 
 .youtube-container-after {
-  width: 30%;
+  width: 35%;
 }
 .mailing-list-container {
   width: 0;
