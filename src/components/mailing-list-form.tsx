@@ -8,7 +8,10 @@ import { addToMailingList } from "@/lib/actions";
 import { toast } from "@/components/ui/toast";
 
 export const addToMailingListSchema = z.object({
-  name: z.string(),
+  name: z
+    .string()
+    .min(2, "This name is too short")
+    .max(30, "This name is too short"),
   email: z.string().email(),
 });
 
@@ -45,7 +48,7 @@ export const MailingListForm = () => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input {...field} placeholder="Name" />
+                <Input {...field} placeholder="Name" className="rounded-lg" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -60,7 +63,7 @@ export const MailingListForm = () => {
                 <FormControl>
                   <Input
                     {...field}
-                    className="flex-1 w-full"
+                    className="flex-1 w-full rounded-l-lg"
                     placeholder="Email address"
                     type="email"
                   />
@@ -69,7 +72,7 @@ export const MailingListForm = () => {
               </FormItem>
             )}
           />
-          <button className="bg-black  text-white dark:bg-white dark:text-black h-12 flex items-center justify-center text-sm py-2 px-4">
+          <button className="bg-black  text-white dark:bg-white dark:text-black h-12 flex items-center justify-center text-sm py-2 px-7 rounded-r-lg">
             Join
           </button>
         </div>
