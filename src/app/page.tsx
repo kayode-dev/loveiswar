@@ -44,7 +44,7 @@ export default function Home() {
       >
         <div
           className={cn(
-            "absolute top-0 left-0 w-full h-1/2 bg-neutral-900 duration-1000 transition-[top] ease-in",
+            "absolute top-0 left-0 w-full h-1/2 bg-neutral-200 dark:bg-neutral-900 duration-1000 transition-[top] ease-in",
             {
               "-top-full": pageLoaded,
             }
@@ -52,7 +52,7 @@ export default function Home() {
         />
         <div
           className={cn(
-            "absolute bottom-0 left-0 w-full h-1/2 bg-neutral-900 duration-1000 transition-[bottom] ease-in",
+            "absolute bottom-0 left-0 w-full h-1/2 bg-neutral-200 dark:bg-neutral-900 duration-1000 transition-[bottom] ease-in",
             {
               "-bottom-full": pageLoaded,
             }

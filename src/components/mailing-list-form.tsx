@@ -69,7 +69,7 @@ export const MailingListForm = () => {
               </FormItem>
             )}
           />
-          <button className="bg-black  text-white dark:bg-white dark:text-black h-10 flex items-center justify-center text-sm py-2 px-4">
+          <button className="bg-black  text-white dark:bg-white dark:text-black h-12 flex items-center justify-center text-sm py-2 px-4">
             Join
           </button>
         </div>
