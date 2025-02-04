@@ -3,46 +3,48 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
 import { Input } from "./ui/input";
-import { Inter } from "next/font/google";
-import { cn } from "@/lib/utils";
+import { useMutation } from "@tanstack/react-query";
+import { addToMailingList } from "@/lib/actions";
+import { toast } from "@/components/ui/toast";
 
-const inter = Inter({ weight: ["400"], subsets: ["greek-ext"] });
-
-const addToMailingListSchema = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
+export const addToMailingListSchema = z.object({
+  name: z.string(),
   email: z.string().email(),
 });
+
 export const MailingListForm = () => {
   const form = useForm<z.infer<typeof addToMailingListSchema>>({
     resolver: zodResolver(addToMailingListSchema),
-    defaultValues: { firstName: "", lastName: "", email: "" },
+    defaultValues: { name: "", email: "" },
   });
-
+  const addToList = useMutation({
+    mutationFn: addToMailingList,
+    onSuccess: () => {
+      toast("Succesfully added to list");
+    },
+    onError: (err) => {
+      toast(err.message);
+    },
+  });
+  const handleSubmit = async ({
+    name,
+    email,
+  }: z.infer<typeof addToMailingListSchema>) => {
+    addToList.mutateAsync({ name, email });
+  };
   return (
     <Form {...form}>
       <form
-        className={cn("md:w-1/2 mx-auto p-4 space-y-4 mt-10", inter.className)}
+        className="md:w-3/4 space-y-4 mt-5 font-[family-name:var(--font-inter)]"
+        onSubmit={form.handleSubmit(handleSubmit)}
       >
         <FormField
-          name="firstName"
+          name="name"
           control={form.control}
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input {...field} placeholder="First Name" />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          name="lastName"
-          control={form.control}
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input {...field} placeholder="Last Name" />
+                <Input {...field} placeholder="Name" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -65,7 +67,7 @@ export const MailingListForm = () => {
               </FormItem>
             )}
           />
-          <button className="bg-white text-black h-9 flex items-center justify-center text-sm py-2 px-4">
+          <button className="bg-white text-black h-10 flex items-center justify-center text-sm py-2 px-4">
             Join
           </button>
         </div>

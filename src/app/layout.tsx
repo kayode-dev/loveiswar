@@ -1,10 +1,19 @@
 import type { Metadata } from "next";
-import { UnifrakturMaguntia } from "next/font/google";
+import { Open_Sans, Bebas_Neue } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/components/ui/toast";
+import { QueryProvider } from "@/components/query-client-provider";
+//import { Footer } from "@/components/footer";
 
-const unifrakturMaguntia = UnifrakturMaguntia({
+const bebasNeue = Bebas_Neue({
   weight: ["400"],
   subsets: ["latin"],
+  variable: "--font-bebas-neue",
+});
+const inter = Open_Sans({
+  weight: ["400"],
+  subsets: ["greek-ext"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -18,9 +27,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${unifrakturMaguntia.className} antialiased bg-black`}>
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${bebasNeue.variable} ${inter.variable} antialiased`}>
+        <QueryProvider>
+          {children}
+          <Toaster />
+        </QueryProvider>
       </body>
     </html>
   );

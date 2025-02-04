@@ -1,26 +1,123 @@
 "use client";
+"use client";
 import Image from "next/image";
-import loveIsWarGrunge from "@/assets/Love is war Grunge.gif";
+import { gsap } from "gsap";
+import TextPlugin from "gsap/TextPlugin";
 import { useEffect, useState } from "react";
+import { MailingListForm } from "@/components/mailing-list-form";
 import { cn } from "@/lib/utils";
+import LOveIsWarGrunge from "@/assets/LoveiswarGrunge_2.gif";
+
+const writeUp =
+  "Starsamm is battle-born—light shaped by struggle, a soul that refused to break. His journey began in the quiet ache of separation, melodies pressing against his ribs, waiting to escape. From Lagos to Osun and back, he scribbled lyrics in stolen moments, chasing a dream that always felt just out of reach. But stars don’t chase, they burn, and in time, their glow finds you. His music is raw and unbound, pulled from the depths of experience and something greater than himself. Love is war, and every note is a fight worth winning. If you feel it, if you’ve ever walked that line between light and dark, you’re already part of the story. Some things aren’t meant to be followed, just found. Stay close.";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(false);
+  gsap.registerPlugin(TextPlugin);
+
+  const [animationDone, setAnimationDone] = useState(false);
+  const [pageLoaded, setPageLoaded] = useState(false);
   useEffect(() => {
-    setIsLoading(true);
+    setTimeout(() => {
+      setPageLoaded(true);
+    }, 2600);
+  }, []);
+  useEffect(() => {
+    gsap
+      .to(".desc", {
+        delay: 3.5,
+        duration: 20,
+        text: writeUp,
+      })
+      .then(() => {
+        setAnimationDone(true);
+      });
   }, []);
   return (
-    <div className="h-dvh flex items-center justify-center ">
-      <Image
-        src={loveIsWarGrunge}
-        alt="love is war logo"
+    <div className="relative text-red-700 items-center justify-center min-h-screen gap-16 font-[family-name:var(--font-bebas-neue)]">
+      <div
         className={cn(
-          "relative -left-2 md:w-1/2 opacity-0 duration-[2s] ease-in transition-opacity",
+          "fixed w-full h-dvh flex items-center justify-center duration-1000 transition-[z-index]",
           {
-            "opacity-100": isLoading,
+            "-z-10": pageLoaded,
           }
         )}
-      />
+      >
+        <div
+          className={cn(
+            "absolute top-0 left-0 w-full h-1/2 bg-neutral-900 duration-1000 transition-[top] ease-in",
+            {
+              "-top-full": pageLoaded,
+            }
+          )}
+        />
+        <div
+          className={cn(
+            "absolute bottom-0 left-0 w-full h-1/2 bg-neutral-900 duration-1000 transition-[bottom] ease-in",
+            {
+              "-bottom-full": pageLoaded,
+            }
+          )}
+        />
+        <Image
+          src={LOveIsWarGrunge}
+          alt="Starsamm Love is War"
+          className={cn(
+            "relative duration-1000 ease-in transition-[opacity] z-20",
+            {
+              "opacity-0": pageLoaded,
+            }
+          )}
+        />
+      </div>
+      <div className="p-4 md:p-20 flex flex-col min-h-dvh md:h-screen md:flex-row gap-10 w-full ease-out duration-500">
+        <div
+          className={cn(
+            "flex flex-col items-center writeup-container justify-center ",
+            {
+              "write-up-container-after": animationDone,
+            }
+          )}
+        >
+          <div className="mx-auto">
+            <p className="text-2xl desc"></p>
+          </div>
+          <div
+            className={cn(
+              "mailing-list-container hidden transition-[width] delay-500 mt-6",
+              {
+                "mailing-list-container-after block": animationDone,
+              }
+            )}
+          >
+            <MailingListForm />
+          </div>
+        </div>
+        <div
+          className={cn(
+            "flex md:flex-col overflow-x-auto md:items-center overflow-y-auto youtube-container md:justify-center gap-4",
+            { "youtube-container-after": animationDone }
+          )}
+        >
+          <YoutubeIFrame videoSrc="https://www.youtube-nocookie.com/embed/JPcO_jXj3vY?si=cEMLumgXUJq9uRJ8" />
+          <YoutubeIFrame videoSrc="https://www.youtube-nocookie.com/embed/7GtNl7jBGAU?si=YZhWMmU6wgGI_5Ua" />
+        </div>
+      </div>
     </div>
   );
 }
+interface YoutubeIFrameProps {
+  videoSrc: string;
+}
+const YoutubeIFrame = ({ videoSrc }: YoutubeIFrameProps) => {
+  return (
+    <iframe
+      className="w-full border-2 rounded-lg border-red-700/30"
+      height="315"
+      src={videoSrc}
+      title="Starsamm - Waiting For, Give me love & Need you (Cover) | Live Performance"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerPolicy="strict-origin-when-cross-origin"
+      allowFullScreen
+    ></iframe>
+  );
+};

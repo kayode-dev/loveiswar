@@ -15,8 +15,42 @@
 }
 
 body {
+  interpolate-size: allow-keywords;
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   cursor: url(../assets/cursor.png), auto;
+}
+
+.writeup-container {
+  width: 100%;
+  transition: width 2s ease-in;
+}
+.write-up-container-after {
+  width: 65%;
+}
+
+.youtube-container {
+  width: 0;
+  transition: width 2s ease-in-out;
+}
+
+.youtube-container-after {
+  width: 35%;
+}
+.mailing-list-container {
+  width: 0;
+  transition: width 2s ease-in-out;
+}
+.mailing-list-container-after {
+  width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .youtube-container-after {
+    width: 100%;
+  }
+  .write-up-container-after {
+    width: 100%;
+  }
 }
