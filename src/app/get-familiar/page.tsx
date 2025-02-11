@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { YoutubeIFrame } from "../page";
 import loveIsWar from "@/assets/love-is-war.png";
+import { YoutubeIFrame } from "@/components/youtube-iframe";
 export default function GetFamiliarPage() {
   return (
     <div className="relative md:max-w-5xl mx-auto space-y-12 p-4 pt-10 pb-5 md:py-10 text-right font-[family-name:var(--font-old-typewriter)]">
@@ -36,7 +36,7 @@ export default function GetFamiliarPage() {
         <div className="flex  md:items-center overflow-y-auto  md:justify-center gap-4">
           <YoutubeIFrame
             videoSrc="https://www.youtube-nocookie.com/embed/JPcO_jXj3vY?si=cEMLumgXUJq9uRJ8"
-            title="Starsamm - Waiting For, Give me love & Need you (Cover) | Live Performance"
+            title="Starsamm - On Me, Ocean Eyes & Infinity (Cover) | Live Performance"
           />
           <YoutubeIFrame
             videoSrc="https://www.youtube-nocookie.com/embed/7GtNl7jBGAU?si=YZhWMmU6wgGI_5Ua"
