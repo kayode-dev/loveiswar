@@ -1,3 +1,4 @@
+"use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -6,6 +7,8 @@ import { Input } from "./ui/input";
 import { useMutation } from "@tanstack/react-query";
 import { addToMailingList } from "@/lib/actions";
 import { toast } from "@/components/ui/toast";
+import Image from "next/image";
+import loveIsWarPng from "@/assets/love-is-war.png";
 
 export const addToMailingListSchema = z.object({
   name: z
@@ -39,22 +42,23 @@ export const MailingListForm = () => {
   return (
     <Form {...form}>
       <form
-        className="md:w-3/4 space-y-4 mt-5 font-[family-name:var(--font-inter)]"
+        className="md:w-1/2 space-y-8 font-[family-name:var(--font-inter)]"
         onSubmit={form.handleSubmit(handleSubmit)}
       >
-        <FormField
-          name="name"
-          control={form.control}
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input {...field} placeholder="Name" className="rounded-lg" />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <div className="flex items-end">
+        <Image src={loveIsWarPng} alt="love is war by starsamm" />
+        <div className="flex flex-col gap-4">
+          <FormField
+            name="name"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input {...field} placeholder="Name" className="rounded-lg" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <FormField
             name="email"
             control={form.control}
@@ -63,7 +67,7 @@ export const MailingListForm = () => {
                 <FormControl>
                   <Input
                     {...field}
-                    className="flex-1 w-full rounded-l-lg"
+                    className="rounded-lg"
                     placeholder="Email address"
                     type="email"
                   />
@@ -72,8 +76,11 @@ export const MailingListForm = () => {
               </FormItem>
             )}
           />
-          <button className="bg-black  text-white dark:bg-white dark:text-black h-12 flex items-center justify-center text-sm py-2 px-7 rounded-r-lg">
-            Join
+          <button
+            disabled={addToList.isPending}
+            className="bg-white text-black w-max self-end h-12 disabled:bg-white/40 flex items-center justify-center py-2 px-5 rounded-lg"
+          >
+            Stay Informed
           </button>
         </div>
       </form>

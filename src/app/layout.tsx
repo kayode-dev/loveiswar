@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Open_Sans, Bebas_Neue } from "next/font/google";
+import { Open_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toast";
 import { QueryProvider } from "@/components/query-client-provider";
 //import { Footer } from "@/components/footer";
 
-const bebasNeue = Bebas_Neue({
-  weight: ["400"],
-  subsets: ["latin"],
-  variable: "--font-bebas-neue",
+const oldTypwriter = localFont({
+  src: "../fonts/Old Typewriter2.0.ttf",
+  variable: "--font-old-typewriter",
 });
 const inter = Open_Sans({
   weight: ["400"],
@@ -28,7 +28,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${bebasNeue.variable} ${inter.variable} antialiased`}>
+      <body
+        className={`${oldTypwriter.variable} ${inter.variable} antialiased bg-black text-white`}
+      >
         <QueryProvider>
           {children}
           <Toaster />

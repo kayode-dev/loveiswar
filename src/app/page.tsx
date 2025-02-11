@@ -1,120 +1,130 @@
 "use client";
-"use client";
-import Image from "next/image";
+
 import { gsap } from "gsap";
 import TextPlugin from "gsap/TextPlugin";
-import { useEffect, useState } from "react";
-import { MailingListForm } from "@/components/mailing-list-form";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import LOveIsWarGrunge from "@/assets/LoveiswarGrunge_2.gif";
-
-const writeUp =
-  "Starsamm is battle-born—light shaped by struggle, a soul that refused to break. His journey began in the quiet ache of separation, melodies pressing against his ribs, waiting to escape. From Lagos to Osun and back, he scribbled lyrics in stolen moments, chasing a dream that always felt just out of reach. But stars don’t chase, they burn, and in time, their glow finds you. His music is raw and unbound, pulled from the depths of experience and something greater than himself. Love is war, and every note is a fight worth winning. If you feel it, if you’ve ever walked that line between light and dark, you’re already part of the story. Some things aren’t meant to be followed, just found. Stay close.";
-
+import Link from "next/link";
+interface WriteUpBody {
+  triggerClass: string;
+  text: string;
+}
+const writeUp: WriteUpBody[] = [
+  { triggerClass: ".start", text: "Hey, I’m Starsamm " },
+  {
+    triggerClass: ".para1",
+    text: "Artist by passion, and romantic by instinct. I create, I feel, and I might just know a thing or two about love.",
+  },
+  {
+    triggerClass: ".para2",
+    text: "Love is many things. It’s a connection, a feeling, a choice, a mix of comfort and challenge. At its core, it is what makes us human. It’s deep and complex, hard to define but easy to feel.",
+  },
+  {
+    triggerClass: ".para3",
+    text: "Love is many things, but if you ask me, I’ll tell you what love truly is:",
+  },
+  { triggerClass: ".para4", text: "LOVE IS WAR" },
+  { triggerClass: ".para5", text: "How so? You'll have to find out" },
+  { triggerClass: ".cta", text: "dare to uncover the truth?" },
+];
 export default function Home() {
   gsap.registerPlugin(TextPlugin);
+  const [start, setStart] = useState(false);
+  const [activeTextIndex, setActiveTextIndex] = useState(0);
+  const [videoEnded, setVideoEnded] = useState(false);
 
-  const [animationDone, setAnimationDone] = useState(false);
-  const [pageLoaded, setPageLoaded] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
   useEffect(() => {
-    setTimeout(() => {
-      setPageLoaded(true);
-    }, 2600);
-  }, []);
-  useEffect(() => {
-    gsap
-      .to(".desc", {
-        delay: 3.5,
-        duration: 20,
-        text: writeUp,
-      })
-      .then(() => {
-        setAnimationDone(true);
+    if (start) {
+      if (audioRef.current) audioRef.current.play();
+      gsap.to(writeUp[activeTextIndex].triggerClass, {
+        delay: 1,
+        duration: writeUp[activeTextIndex].text.length * 0.1,
+        text: {
+          value: writeUp[activeTextIndex].text,
+        },
+        ease: "none",
+        onComplete: () => {
+          if (activeTextIndex !== writeUp.length - 1) {
+            audioRef.current?.pause();
+            setActiveTextIndex((prev) => prev + 1);
+            return;
+          }
+          audioRef.current?.pause();
+        },
       });
-  }, []);
+    }
+  }, [activeTextIndex, start]);
   return (
-    <div className="relative text-red-700 items-center justify-center min-h-screen gap-16 font-[family-name:var(--font-bebas-neue)]">
+    <div className="relative text-red-700 items-center justify-center min-h-screen gap-16 font-[family-name:var(--font-old-typewriter)]">
       <div
         className={cn(
-          "fixed w-full h-dvh flex items-center justify-center duration-1000 transition-[z-index]",
-          {
-            "-z-10": pageLoaded,
-          }
+          "fixed w-full h-dvh flex items-center justify-center bg-black",
+          { hidden: videoEnded }
         )}
       >
-        <div
-          className={cn(
-            "absolute top-0 left-0 w-full h-1/2 bg-neutral-200 dark:bg-neutral-900 duration-1000 transition-[top] ease-in",
-            {
-              "-top-full": pageLoaded,
-            }
-          )}
-        />
-        <div
-          className={cn(
-            "absolute bottom-0 left-0 w-full h-1/2 bg-neutral-200 dark:bg-neutral-900 duration-1000 transition-[bottom] ease-in",
-            {
-              "-bottom-full": pageLoaded,
-            }
-          )}
-        />
-        <Image
-          src={LOveIsWarGrunge}
-          alt="Starsamm Love is War"
-          className={cn(
-            "relative duration-200 ease-in transition-[opacity] z-20",
-            {
-              "opacity-0": pageLoaded,
-            }
-          )}
-        />
-      </div>
-      <div className="p-4 md:p-20 flex flex-col min-h-dvh md:h-screen md:flex-row gap-10 w-full ease-out duration-500">
-        <div
-          className={cn(
-            "flex flex-col items-center writeup-container justify-center ",
-            {
-              "write-up-container-after": animationDone,
-            }
-          )}
+        <video
+          preload="none"
+          className="md:w-1/2 relative z-0"
+          autoPlay
+          muted
+          playsInline
+          onEnded={() => {
+            setVideoEnded(true);
+          }}
         >
-          <div className="mx-auto">
-            <p className="text-2xl desc"></p>
-          </div>
-          <div
-            className={cn(
-              "mailing-list-container hidden transition-[width] delay-500 mt-6",
-              {
-                "mailing-list-container-after block": animationDone,
-              }
-            )}
+          <source
+            src="/loveiswarGrunge.mp4"
+            className="bg-black"
+            type="video/mp4"
+          />
+        </video>
+      </div>
+      <div className="p-4 md:p-20 flex flex-col min-h-dvh items-center justify-center md:h-screen md:flex-row gap-10 w-full ease-out duration-500">
+        {!start ? (
+          <button
+            className={cn("animate-pulse underline underline-offset-2", {
+              hidden: !videoEnded,
+            })}
+            onClick={() => {
+              setStart(true);
+            }}
           >
-            <MailingListForm />
+            start
+          </button>
+        ) : (
+          <div className="flex flex-col items-center gap-4 justify-center ">
+            <div className="mx-auto space-y-4 tracking-widest">
+              <p className="md:text-lg text-center start"></p>
+              <p className="md:text-lg text-center para1"></p>
+              <p className="md:text-lg text-center para2"></p>
+              <p className="md:text-lg text-center para3"></p>
+              <p className="md:text-lg text-center para4"></p>
+              <p className="md:text-lg text-center para5"></p>
+            </div>
+            <Link
+              href="/register"
+              className="cta underline underline-offset-2 md:text-lg"
+            ></Link>
           </div>
-        </div>
-        <div
-          className={cn(
-            "flex md:flex-col overflow-x-auto md:items-center overflow-y-auto youtube-container md:justify-center gap-4",
-            { "youtube-container-after": animationDone }
-          )}
-        >
-          <YoutubeIFrame videoSrc="https://www.youtube-nocookie.com/embed/JPcO_jXj3vY?si=cEMLumgXUJq9uRJ8" />
-          <YoutubeIFrame videoSrc="https://www.youtube-nocookie.com/embed/7GtNl7jBGAU?si=YZhWMmU6wgGI_5Ua" />
-        </div>
+        )}
       </div>
+      <audio src="/typewriter.mp3" ref={audioRef} playsInline></audio>
     </div>
   );
 }
 interface YoutubeIFrameProps {
   videoSrc: string;
+  title: string;
 }
-const YoutubeIFrame = ({ videoSrc }: YoutubeIFrameProps) => {
+export const YoutubeIFrame = ({ videoSrc, title }: YoutubeIFrameProps) => {
   return (
     <iframe
       className="w-full border-2 rounded-lg border-red-700/30"
       height="315"
       src={videoSrc}
-      title="Starsamm - Waiting For, Give me love & Need you (Cover) | Live Performance"
+      title={title}
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       referrerPolicy="strict-origin-when-cross-origin"
       allowFullScreen
