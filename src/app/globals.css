@@ -42,3 +42,20 @@ body {
     width: 100%;
   }
 }
+
+@keyframes sword-movement {
+  from {
+    left: -200px;
+    opacity: 0;
+  }
+  to {
+    left: 0px;
+    opacity: 1;
+  }
+}
+
+.sword {
+  animation-name: sword-movement;
+  animation-duration: 600ms;
+  animation-timing-function: linear;
+}
