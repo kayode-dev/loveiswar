@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary: "#C40330";
+}
+
 body {
   interpolate-size: allow-keywords;
   color: var(--foreground);
