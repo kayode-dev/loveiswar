@@ -8,13 +8,13 @@ import { useMutation } from "@tanstack/react-query";
 import { addToMailingList } from "@/lib/actions";
 import { toast } from "@/components/ui/toast";
 import Image from "next/image";
-import loveIsWarPng from "@/assets/love-is-war.png";
+import loveIsWarPng from "@/assets/loveIsWarGrunge.gif";
 
 export const addToMailingListSchema = z.object({
   name: z
     .string()
     .min(2, "This name is too short")
-    .max(30, "This name is too short"),
+    .max(30, "This name is too long"),
   email: z.string().email(),
 });
 
@@ -53,7 +53,7 @@ export const MailingListForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input {...field} placeholder="Name" className="rounded-lg" />
+                  <Input {...field} placeholder="Name" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -65,12 +65,7 @@ export const MailingListForm = () => {
             render={({ field }) => (
               <FormItem className="flex-1">
                 <FormControl>
-                  <Input
-                    {...field}
-                    className="rounded-lg"
-                    placeholder="Email address"
-                    type="email"
-                  />
+                  <Input {...field} placeholder="Email address" type="email" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -78,7 +73,7 @@ export const MailingListForm = () => {
           />
           <button
             disabled={addToList.isPending}
-            className="bg-white text-black w-max self-end h-12 disabled:bg-white/40 flex items-center justify-center py-2 px-5 rounded-lg"
+            className="underline underline-offset-4  w-max hover:text-primary duration-300 ease-linear transition-colors self-end h-12 disabled:bg-white/40 flex items-center justify-center disabled:opacity-70"
           >
             Stay Informed
           </button>
