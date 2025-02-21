@@ -32,7 +32,7 @@ export const BitsAndPieces = () => {
 export const MusicIframe = ({ src }: { src: string }) => {
   return (
     <div className="rounded-xl md:w-1/2 min-h-[450px] relative overflow-hidden">
-      <div className="min-w-full min-h-[450px] animate-pulse bg-neutral-600/50 absolute -z-10"></div>
+      <div className="min-w-full min-h-[450px] animate-pulse bg-black/50 absolute -z-10"></div>
 
       <iframe
         className="rounded-xl w-full min-h-[450px]"
