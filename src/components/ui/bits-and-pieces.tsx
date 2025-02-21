@@ -2,7 +2,7 @@ import { YoutubeIFrame } from "../youtube-iframe";
 
 export const BitsAndPieces = () => {
   return (
-    <div className="relative bg-primary w-full md:text-xl space-y-12 p-4 pt-10 pb-5 md:py-10 md:px-80 text-right font-[family-name:var(--font-old-typewriter)]">
+    <div className="relative bg-primary w-full md:text-xl space-y-8 p-4 pt-10 pb-5 md:py-10 md:px-80 text-right font-[family-name:var(--font-old-typewriter)]">
       <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-b-[20px] border-b-primary" />
       <div className="space-y-4">
         <p>/ visuals</p>

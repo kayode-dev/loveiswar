@@ -5,7 +5,7 @@ interface YoutubeIFrameProps {
 export const YoutubeIFrame = ({ videoSrc, title }: YoutubeIFrameProps) => {
   return (
     <iframe
-      className="w-full border-2 rounded-lg border-red-700/30"
+      className="w-full min-h-full border-2 rounded-lg border-red-700/30"
       height="315"
       src={videoSrc}
       title={title}
