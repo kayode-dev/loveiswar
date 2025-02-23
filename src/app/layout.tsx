@@ -20,6 +20,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="theme-color" content="#c40330" />
+        <meta name="msapplication-navbutton-color" content="#c40330" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#c40330" />
+      </head>
       <body
         className={`${oldTypwriter.className} antialiased bg-black text-white`}
       >
