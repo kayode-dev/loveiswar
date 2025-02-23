@@ -4,6 +4,7 @@
 
 :root {
   --primary: "#C40330";
+  scroll-behavior: smooth !important;
 }
 
 body {

@@ -44,7 +44,7 @@ export default function Home() {
   }, [activeTextIndex, start, skip]);
 
   return (
-    <div className="relative  flex flex-col items-center justify-center min-h-screen gap-16 font-[family-name:var(--font-old-typewriter)]">
+    <div className="relative text-primary flex flex-col items-center justify-center min-h-screen gap-16 font-[family-name:var(--font-old-typewriter)]">
       <div
         className={cn(
           "fixed w-full h-dvh flex items-center justify-center bg-black",
@@ -71,7 +71,7 @@ export default function Home() {
       {!start ? (
         <button
           className={cn(
-            "animate-pulse underline text-lg font-bold underline-offset-2",
+            "animate-pulse underline text-lg text-primary font-bold underline-offset-2",
             {
               hidden: !videoEnded,
             }
@@ -83,11 +83,7 @@ export default function Home() {
           start
         </button>
       ) : (
-        <ShowWriteUp
-          skip={skip}
-          setSkip={setSkip}
-          activeTextIndex={activeTextIndex}
-        />
+        <ShowWriteUp skip={skip} setSkip={setSkip} />
       )}
       <audio src="/typewriter.mp3" ref={audioRef} autoPlay playsInline></audio>
     </div>
