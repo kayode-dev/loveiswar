@@ -42,10 +42,14 @@ export const MailingListForm = () => {
   return (
     <Form {...form}>
       <form
-        className="md:w-1/2 space-y-8 font-[family-name:var(--font-inter)]"
+        className="md:w-1/2 space-y-8 md:space-y-10 font-[family-name:var(--font-inter)]"
         onSubmit={form.handleSubmit(handleSubmit)}
       >
-        <Image src={loveIsWarPng} alt="love is war by starsamm" />
+        <Image
+          src={loveIsWarPng}
+          alt="love is war by starsamm"
+          className="md:w-3/4 mx-auto"
+        />
         <div className="flex flex-col gap-4">
           <FormField
             name="name"

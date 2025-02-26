@@ -14,12 +14,15 @@ export default function Home() {
 
   const [start, setStart] = useState(false);
   const [activeTextIndex, setActiveTextIndex] = useState(0);
+  const [removeAudio, setRemoveAudio] = useState(false);
   const [videoEnded, setVideoEnded] = useState(false);
   const [skip, setSkip] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
-    if (skip) audioRef.current?.pause();
+    if (skip) {
+      setRemoveAudio(true);
+    }
     if (start && !skip) {
       if (audioRef.current) audioRef.current.play();
       const tl = gsap.timeline({
@@ -39,7 +42,8 @@ export default function Home() {
             setActiveTextIndex((prev) => prev + 1);
             return;
           }
-          audioRef.current?.pause();
+          //audioRef.current?.pause();
+          setRemoveAudio(true);
         },
       });
     }
@@ -51,9 +55,10 @@ export default function Home() {
         src={starsamm}
         alt="starsamm love is war"
         className={cn(
-          "fixed top-0 -z-10 w-full h-full opacity-0 object-left object-cover duration-500 ease-in-out",
+          "fixed top-0 -z-10 w-full h-full opacity-0 object-left object-cover duration-1000 ease-in-out",
           videoEnded && "opacity-100"
         )}
+        placeholder="blur"
       />
 
       <div
@@ -93,7 +98,14 @@ export default function Home() {
           <ShowWriteUp skip={skip} setSkip={setSkip} />
         )}
       </div>
-      <audio src="/typewriter.mp3" ref={audioRef} autoPlay playsInline></audio>
+      {!removeAudio && (
+        <audio
+          src="/typewriter.mp3"
+          ref={audioRef}
+          autoPlay
+          playsInline
+        ></audio>
+      )}
     </div>
   );
 }
