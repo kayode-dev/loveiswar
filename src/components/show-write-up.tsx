@@ -15,7 +15,7 @@ export const ShowWriteUp = ({ skip, setSkip }: ShowWriteUpProps) => {
   const [showFolder, setShowFolder] = useState(false);
 
   return (
-    <div className="w-full min-h-dvh flex flex-col items-center justify-center">
+    <div className="w-full flex flex-col items-center justify-center">
       <div
         className="flex flex-col items-center h-dvh gap-4 md:text-xl p-4 md:p-20 justify-center"
         role={!skip ? "button" : "none"}

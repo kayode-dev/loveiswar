@@ -6,6 +6,8 @@ import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { writeUp } from "@/lib/constants";
 import { ShowWriteUp } from "@/components/show-write-up";
+import Image from "next/image";
+import starsamm from "@/assets/starsamm.png";
 
 export default function Home() {
   gsap.registerPlugin(TextPlugin);
@@ -44,12 +46,20 @@ export default function Home() {
   }, [activeTextIndex, start, skip]);
 
   return (
-    <div className="relative text-primary flex flex-col items-center justify-center min-h-screen gap-16 font-[family-name:var(--font-old-typewriter)]">
-      <div
+    <div className="relative text-primary flex flex-col items-center justify-center min-h-dvh gap-16">
+      <Image
+        src={starsamm}
+        alt="starsamm love is war"
         className={cn(
-          "fixed w-full h-dvh flex items-center justify-center bg-black",
-          { hidden: videoEnded }
+          "fixed top-0 -z-10 w-full h-full opacity-0 object-left object-cover duration-500 ease-in-out",
+          videoEnded && "opacity-100"
         )}
+      />
+
+      <div
+        className={cn("fixed w-full h-full flex items-center justify-center", {
+          hidden: videoEnded,
+        })}
       >
         <video
           preload="none"
@@ -61,30 +71,28 @@ export default function Home() {
             setVideoEnded(true);
           }}
         >
-          <source
-            src="/loveiswarGrunge.mp4"
-            className="bg-black"
-            type="video/mp4"
-          />
+          <source src="/loveiswarGrunge.mp4" className="" type="video/mp4" />
         </video>
       </div>
-      {!start ? (
-        <button
-          className={cn(
-            "animate-pulse underline text-lg text-primary font-bold underline-offset-2",
-            {
-              hidden: !videoEnded,
-            }
-          )}
-          onClick={() => {
-            setStart(true);
-          }}
-        >
-          start
-        </button>
-      ) : (
-        <ShowWriteUp skip={skip} setSkip={setSkip} />
-      )}
+      <div className="bg-black/80 min-h-dvh w-full flex items-center justify-center">
+        {!start ? (
+          <button
+            className={cn(
+              "animate-pulse underline text-lg text-primary font-bold underline-offset-2",
+              {
+                hidden: !videoEnded,
+              }
+            )}
+            onClick={() => {
+              setStart(true);
+            }}
+          >
+            start
+          </button>
+        ) : (
+          <ShowWriteUp skip={skip} setSkip={setSkip} />
+        )}
+      </div>
       <audio src="/typewriter.mp3" ref={audioRef} autoPlay playsInline></audio>
     </div>
   );

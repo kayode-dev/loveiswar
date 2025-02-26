@@ -3,10 +3,10 @@ import { YoutubeIFrame } from "../youtube-iframe";
 export const BitsAndPieces = () => {
   return (
     <div
-      className="relative bg-primary text-white w-full md:text-lg space-y-8 p-4  md:pt-10 pb-5 md:py-10 lg:px-80 text-right font-[family-name:var(--font-old-typewriter)]"
+      className="relative text-white w-full md:text-lg space-y-8 p-4  md:pt-10 pb-5 md:py-10 lg:px-80 text-right font-[family-name:var(--font-old-typewriter)]"
       id="bits-and-pieces"
     >
-      <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-b-[20px] border-b-primary" />
+      {/* <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-b-[20px] border-b-primary" /> */}
       <div className="space-y-4">
         <p>/ visuals</p>
         <div className="flex md:items-center overflow-y-auto  md:justify-center gap-4">

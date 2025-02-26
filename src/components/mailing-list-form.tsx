@@ -73,7 +73,7 @@ export const MailingListForm = () => {
           />
           <button
             disabled={addToList.isPending}
-            className="underline underline-offset-4  w-max hover:text-primary duration-300 ease-linear transition-colors self-end h-12 disabled:bg-white/40 flex items-center justify-center disabled:opacity-70"
+            className="underline underline-offset-4  w-max hover:text-primary duration-300 ease-linear transition-colors self-end h-12 disabled:text-white/40 flex items-center justify-center disabled:opacity-70"
           >
             Stay Informed
           </button>
